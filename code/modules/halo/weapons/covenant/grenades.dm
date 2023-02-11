@@ -55,9 +55,9 @@
 			h.update_inv_r_hand()
 
 /obj/item/weapon/grenade/plasma/throw_impact(var/atom/A)
-	start_timer()
 	if(!active)
 		return
+	start_timer()
 	var/mob/living/L = A
 	if(!istype(L))
 		return
