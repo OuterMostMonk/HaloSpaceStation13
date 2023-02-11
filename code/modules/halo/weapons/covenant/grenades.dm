@@ -55,6 +55,7 @@
 			h.update_inv_r_hand()
 
 /obj/item/weapon/grenade/plasma/throw_impact(var/atom/A)
+	start_timer()
 	if(!active)
 		return
 	var/mob/living/L = A
@@ -104,5 +105,11 @@
 	throw_range = 0
 	alt_explosion_range = 4
 	alt_explosion_damage_max = 60
+	
+/obj/item/weapon/grenade/plasma/suicide/dropped(var/onto)
+	. = ..()
+	if(active == 1 && starttimer_on_hit)
+		active = 2
+		start_timer()
 
 #undef ADHERENCE_TIME
