@@ -57,6 +57,7 @@
 /obj/item/weapon/grenade/plasma/throw_impact(var/atom/A)
 	if(!active)
 		return
+	start_timer()
 	var/mob/living/L = A
 	if(!istype(L))
 		return
@@ -104,5 +105,11 @@
 	throw_range = 0
 	alt_explosion_range = 4
 	alt_explosion_damage_max = 60
+	
+/obj/item/weapon/grenade/plasma/suicide/dropped(var/onto)
+	. = ..()
+	if(active == 1 && starttimer_on_hit)
+		active = 2
+		start_timer()
 
 #undef ADHERENCE_TIME
